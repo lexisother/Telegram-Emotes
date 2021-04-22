@@ -12,14 +12,15 @@ client.command('emote', async (ctx) => {
     const registry = topReg.list;
     const emote = registry.find((e) => e.name === ctx.message.text.replace('/emote', '').replace(' ', ''))
     if (emote) {
-        console.log(`${emote.name}\n${emote.url}\n\n`)
-        ctx.telegram.sendMessage(ctx.message.chat.id, emote.url);
+        ctx.reply(emote.url);
     } else {
-        console.log('can\'t find')
+        ctx.reply('I can\'t find that emote!')
     }
 })
 
-client.launch();
+client.launch({
+    allowedUpdates: ['message']
+});
 
 process.once('SIGINT', () => client.stop('SIGINT'));
 process.once('SIGTERM', () => client.stop('SIGTERM'));
