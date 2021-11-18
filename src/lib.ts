@@ -42,3 +42,4 @@ export interface EmoteRegistryDump {
     version: number;
     list: EmoteRegistryDumpEntry[];
 }
+
